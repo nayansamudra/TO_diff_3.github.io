@@ -65,11 +65,11 @@
 
             new_j = 0
 
-            Highcharts.getJSON('Testing_Col_Chart_7.json', function (data) {
+            Highcharts.getJSON('To_Diff_28_12_2022.json', function (data) {
 
                 // split the data set into ohlc and volume
-                chng_ltq = [],
-                    chng_ltq_2 = [],
+                to_diff = [],
+                    to_diff_2 = [],
                     Spot = [],
                     Spot_helper = [],
                     Spot_Final = []
@@ -88,31 +88,31 @@
                     i = 0;
 
                 for (i; i < dataLength; i += 1) {
-                    chng_ltq.push([
+                    to_diff.push([
                         data[i]['TS'],          // the date
-                        data[i]['chng_ltq'],     // chng_ltq
+                        data[i]['to_diff'],     // to_diff
                     ]);
 
                     Spot.push([
                         data[i]['TS'],          // the date
-                        data[i]['Spot'],     // chng_ltq
+                        data[i]['Spot'],     // to_diff
                     ]);
 
                 }
 
-                for (var i = 0; i < chng_ltq.length; i++) {
+                for (var i = 0; i < to_diff.length; i++) {
                     if (i < (slider_value - 1)) {
-                        chng_ltq_2.push([chng_ltq[i][0], 0]);
+                        to_diff_2.push([to_diff[i][0], 0]);
                     }
                     else if (i >= (slider_value - 1)) {
                         sum = 0
                         len = (slider_value - 1) - 5
                         for (var j = i; j > (i - slider_value); j--) {
-                            // console.log("chng_ltq[j][1] = ",chng_ltq[j][1])
-                            sum = sum + chng_ltq[j][1]
+                            // console.log("to_diff[j][1] = ",to_diff[j][1])
+                            sum = sum + to_diff[j][1]
                             // console.log(sum)
                         }
-                        chng_ltq_2.push([chng_ltq[i][0], sum]);
+                        to_diff_2.push([to_diff[i][0], sum]);
                     }
                     sum = 0
                 }
@@ -290,7 +290,7 @@
                         },
                         split: true,
                         formatter: function () {
-                            tooltipArray = ['<b>' + moment.unix(this.x).format('h:mm:ss a') + '</b>&nbsp;&nbsp;' + '<b>chng_ltq:</b>&nbsp;' + this.points[0].y + '<b>&nbsp;&nbsp;chng_ltq_2:</b>&nbsp;' + this.points[1].y
+                            tooltipArray = ['<b>' + moment.unix(this.x).format('h:mm:ss a') + '</b>&nbsp;&nbsp;' + '<b>to_diff:</b>&nbsp;' + this.points[0].y + '<b>&nbsp;&nbsp;to_diff_2:</b>&nbsp;' + this.points[1].y
                                 // + '&nbsp;&nbsp;<b>Spot:</b>&nbsp;' + this.points[2].y + '&nbsp;&nbsp;<b>ITM_PE_ltp:</b>&nbsp;' + this.points[3].y
                             ]
                             tooltip_1 = ['&nbsp;&nbsp;<b>Spot:</b>&nbsp;' + this.points[2].y]
@@ -311,9 +311,9 @@
                     series: [
                         {
                             type: 'column',
-                            name: 'chng_ltq',
+                            name: 'to_diff',
                             color: 'rgb(255, 108, 108)',
-                            data: chng_ltq,
+                            data: to_diff,
                             yAxis: 1,
                             color: 'rgb(66, 177, 66)',
                             negativeColor: 'rgb(255, 108, 108)',
@@ -323,9 +323,9 @@
                         },
                         {
                             type: 'column',
-                            name: 'chng_ltq_2',
+                            name: 'to_diff_2',
                             color: 'rgb(255, 108, 108)',
-                            data: chng_ltq_2,
+                            data: to_diff_2,
                             yAxis: 2,
                             color: 'rgb(66, 177, 66)',
                             negativeColor: 'rgb(255, 108, 108)',
@@ -403,21 +403,21 @@
                 slider_value = parseFloat($(".tooltip-inner").text())
                 // console.log(slider_value)
 
-                chng_ltq_2 = []
+                to_diff_2 = []
 
-                for (var i = 0; i < chng_ltq.length; i++) {
+                for (var i = 0; i < to_diff.length; i++) {
                     if (i < (slider_value - 1)) {
-                        chng_ltq_2.push([chng_ltq[i][0], 0]);
+                        to_diff_2.push([to_diff[i][0], 0]);
                     }
                     else if (i >= (slider_value - 1)) {
                         sum = 0
                         len = (slider_value - 1) - 5
                         for (var j = i; j > (i - slider_value); j--) {
-                            // console.log("chng_ltq[j][1] = ",chng_ltq[j][1])
-                            sum = sum + chng_ltq[j][1]
+                            // console.log("to_diff[j][1] = ",to_diff[j][1])
+                            sum = sum + to_diff[j][1]
                             // console.log(sum)
                         }
-                        chng_ltq_2.push([chng_ltq[i][0], sum]);
+                        to_diff_2.push([to_diff[i][0], sum]);
                     }
                     sum = 0
                 }
@@ -433,7 +433,7 @@
                         },
                         split: true,
                         formatter: function () {
-                            tooltipArray = ['<b>' + moment.unix(this.x).format('h:mm:ss a') + '</b>&nbsp;&nbsp;' + '<b>chng_ltq:</b>&nbsp;' + this.points[0].y + '<b>&nbsp;&nbsp;chng_ltq_2:</b>&nbsp;' + this.points[1].y
+                            tooltipArray = ['<b>' + moment.unix(this.x).format('h:mm:ss a') + '</b>&nbsp;&nbsp;' + '<b>to_diff:</b>&nbsp;' + this.points[0].y + '<b>&nbsp;&nbsp;to_diff_2:</b>&nbsp;' + this.points[1].y
                                 // + '&nbsp;&nbsp;<b>Spot:</b>&nbsp;' + this.points[2].y + '&nbsp;&nbsp;<b>ITM_PE_ltp:</b>&nbsp;' + this.points[3].y
                             ]
                             tooltip_1 = ['&nbsp;&nbsp;<b>Spot:</b>&nbsp;' + this.points[2].y]
@@ -446,9 +446,9 @@
                     series: [
                         {
                             type: 'column',
-                            name: 'chng_ltq',
+                            name: 'to_diff',
                             color: 'rgb(255, 108, 108)',
-                            data: chng_ltq,
+                            data: to_diff,
                             yAxis: 1,
                             color: 'rgb(66, 177, 66)',
                             negativeColor: 'rgb(255, 108, 108)',
@@ -458,9 +458,9 @@
                         },
                         {
                             type: 'column',
-                            name: 'chng_ltq_2',
+                            name: 'to_diff_2',
                             color: 'rgb(255, 108, 108)',
-                            data: chng_ltq_2,
+                            data: to_diff_2,
                             yAxis: 2,
                             color: 'rgb(66, 177, 66)',
                             negativeColor: 'rgb(255, 108, 108)',
